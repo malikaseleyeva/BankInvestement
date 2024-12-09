@@ -17,9 +17,17 @@ class AlphavantageAPI:
 
 class Transactions:
     def __init__(self):
-        self.portfolio_df = pd.DataFrame(columns=['Stock', 'Shares', 'Price per Share', 'Total Cost', 'Transaction Date'])
+        self.user_portfolios = {}
 
-    def buy(self):
+    def get_user_portfolio(self, user):
+        if user not in self.user_portfolios:
+            self.user_portfolios[user] = pd.DataFrame(columns=['Stock', 'Shares', 'Price per Share', 'Total Cost', 'Transaction Date'])
+        else:
+            self.user_portfolios[user]
+        print(self.user_portfolios[user])
+    
+    def buy(self,user):
+        self.portfolio_df = self.get_user_portfolio(user)
         stock = input("Enter the stock you want to buy: ")
         amount = int(input("Enter the number of shares you want to buy: "))
         
@@ -46,7 +54,8 @@ class Transactions:
         print("Updated Portfolio after buying:")
         print(self.portfolio_df)
 
-    def sell(self):
+    def sell(self,user):
+        self.portfolio_df = self.get_user_portfolio(user)
         stock = input("Enter the stock you want to sell: ")
         amount = int(input(f"Enter the number of shares of {stock} you want to sell: "))
 
@@ -77,7 +86,7 @@ class Transactions:
                 sell_df = pd.DataFrame(sell_data)
                 self.portfolio_df = pd.concat([self.portfolio_df, sell_df], ignore_index=True)
                 
-                print("\nUpdated Portfolio after selling:")
+                print("Updated Portfolio after selling:")
                 print(self.portfolio_df)
             else:
                 print(f"You are trying to sell more shares than you own. You have {total_shares} shares of {stock}.")
@@ -90,9 +99,9 @@ if __name__ == "__main__":
     while True:
         action = input("Do you want to buy or sell stocks? (buy/sell/exit): ")
         if action == 'buy':
-            transactions.buy()
+            transactions.buy('malika')
         elif action == 'sell':
-            transactions.sell()
+            transactions.sell('malika')
         elif action == 'exit':
             break
         else:
