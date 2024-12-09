@@ -43,7 +43,7 @@ class Transactions:
         purchase_df = pd.DataFrame(purchase_data)
         self.portfolio_df = pd.concat([self.portfolio_df, purchase_df], ignore_index=True)
         
-        print("\nUpdated Portfolio after buying:")
+        print("Updated Portfolio after buying:")
         print(self.portfolio_df)
 
     def sell(self):
@@ -69,7 +69,7 @@ class Transactions:
                 # Add the sale to the portfolio
                 sell_data = {
                     'Stock': [stock],
-                    'Shares': [-amount],  # Negative because it's a sale
+                    'Shares': [-amount],
                     'Price per Share': [latest_price],
                     'Total Cost': [-total_cost],
                     'Transaction Date': [current_date]
@@ -80,15 +80,15 @@ class Transactions:
                 print("\nUpdated Portfolio after selling:")
                 print(self.portfolio_df)
             else:
-                print(f"Error: You are trying to sell more shares than you own. You have {total_shares} shares of {stock}.")
+                print(f"You are trying to sell more shares than you own. You have {total_shares} shares of {stock}.")
         else:
-            print(f"Error: You do not own any shares of {stock}.")
+            print(f"You do not own any shares of {stock}.")
 
 
 if __name__ == "__main__":
     transactions = Transactions()
     while True:
-        action = input("Do you want to buy or sell stocks? (buy/sell/exit): ").lower()
+        action = input("Do you want to buy or sell stocks? (buy/sell/exit): ")
         if action == 'buy':
             transactions.buy()
         elif action == 'sell':
