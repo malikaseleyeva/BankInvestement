@@ -4,7 +4,7 @@ from datetime import datetime
 
 class AlphavantageAPI:
     def __init__(self, stock):
-        self.url = f'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol={stock}&interval=1min&apikey=53HU7S3992V5RPQZ'
+        self.url = f'ttps://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol={stock}&interval=5min&apikey=JYNTV7BCI77GNKRJ'
         r = requests.get(self.url, verify=False)
         data = r.json()
         self.data = pd.DataFrame(data['Time Series (1min)']).T  # Transpose to get dates as rows
