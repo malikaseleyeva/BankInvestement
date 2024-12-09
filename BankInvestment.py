@@ -24,3 +24,29 @@ if __name__ == "__main__":
                 break
             else:
                 print("Invalid option. Please enter 'buy', 'sell', or 'exit'.")
+    
+    if Access[1] == "Buy":
+        transactions = Transactions()
+        while True:
+            action = input("Do you want to buy? (buy/exit): ")
+            if action == 'buy':
+                transactions.buy(Access[0])
+            elif action == 'sell':
+                print("You don't have the right access to sell stocks.")
+            elif action == 'exit':
+                break
+            else:
+                print("Invalid option. Please enter 'buy', or 'exit'.")
+
+    if Access[1] == "Sell":
+        transactions = Transactions()
+        while True:
+            action = input("Do you want to sell? (sell/exit): ")
+            if action == 'buy':
+                print("You don't have the right access to buy stocks.")
+            elif action == 'sell':
+                transactions.buy(Access[0])
+            elif action == 'exit':
+                break
+            else:
+                print("Invalid option. Please enter 'sell', or 'exit'.")   

@@ -52,7 +52,7 @@ def getUserName():
             if buy=="y" and Sell=="y":
                 AccessType="Full"
             if buy=="y" and Sell!="y":
-                AccessType="buy"
+                AccessType="Buy"
             if buy!="y" and Sell=="y":
                 AccessType="Sell"
     print(f"The user has {AccessType} access")
