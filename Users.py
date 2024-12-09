@@ -18,11 +18,11 @@ class User:
 
 def newUser():
 
-    Name=input ("Name")
+    Name=input ("Name :")
     Surname=input("Surname : ")
     Access = True
-    Buy = input("Buy :")
-    Sell = input ("Sell :")
+    Buy = input("Buy (y is yes) :")
+    Sell = input ("Sell (y if yes) :")
 
     with open('users.csv', 'w', newline='') as csvfile:
         employee_writer = csv.writer(csvfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
@@ -36,25 +36,24 @@ def newUser():
 
 
 def getUserName():
-    UserName=input ("login Name :")
+    UserName=input ("Name :")
     AccessType="None"
-    with open('employee_birthday.csv') as csv_file:
+    Access=0
+    with open('users.csv') as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
         line_count = 0
         for row in csv_reader:
-            if row["Name"] =="UserName":
-                Access = row["Access"]
-                buy=row["buy"]
-                Sell=row.["Sell"]
-        if Access==1:
-            if buy==1 and Sell==1:
+            print(str(row[0]))
+            if row[0] == UserName:
+                Access = str(row[2])
+                buy=str(row[3])
+                Sell = str(row[4])
+        if Access==str(1):
+            if buy=="y" and Sell=="y":
                 AccessType="Full"
-            if buy=1 and Sell==0:
+            if buy=="y" and Sell!="y":
                 AccessType="buy"
-            if buy=0 and Sell==1:
+            if buy!="y" and Sell=="y":
                 AccessType="Sell"
-
-    return (AccessType)
-
-
-getUserName()
+    print(f"The user has {AccessType} access")
+    return (UserName, AccessType)
