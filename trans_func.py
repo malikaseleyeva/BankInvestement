@@ -27,10 +27,9 @@ class Transactions:
         print(self.user_portfolios[user])
     
     def buy(self,user,stock, amount):
+        """Buying stocks and addding it to the portfolio"""
         self.portfolio_df = self.get_user_portfolio(user)
-        # stock = input("Enter the stock you want to buy: ")
-        # amount = int(input("Enter the number of shares you want to buy: "))
-        
+
         api = AlphavantageAPI(stock)
         latest_price = api.get_latest_price()
         total_cost = latest_price * amount
@@ -39,7 +38,6 @@ class Transactions:
         print(f"The latest price of {stock} is ${latest_price:.2f}")
         print(f"The total cost for {amount} shares of {stock} is ${total_cost:.2f}")
 
-        # Create a DataFrame to store the purchase
         purchase_data = {
             'Stock': [stock],
             'Shares': [amount],
@@ -53,11 +51,11 @@ class Transactions:
         
         print("Updated Portfolio after buying:")
         print(self.portfolio_df)
+        return self.portfolio_df
 
     def sell(self,user,stock,amount):
+        """Selling of stocks and adding it to the portfolio"""
         self.portfolio_df = self.get_user_portfolio(user)
-        # stock = input("Enter the stock you want to sell: ")
-        # amount = int(input(f"Enter the number of shares of {stock} you want to sell: "))
 
         # Check if the stock is in the portfolio and if the amount is sufficient
         if stock in self.portfolio_df['Stock'].values:
@@ -92,6 +90,7 @@ class Transactions:
                 print(f"You are trying to sell more shares than you own. You have {total_shares} shares of {stock}.")
         else:
             print(f"You do not own any shares of {stock}.")
+        return self.portfolio_df
 
 
 if __name__ == "__main__":
