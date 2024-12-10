@@ -17,43 +17,45 @@ class User:
             SAccess = "User has no Access"
 
 def newUser():
-
-    Name=input ("Name :")
-    Surname=input("Surname : ")
+    Name = input("Name: ")
+    Surname = input("Surname: ")
     Access = True
-    Buy = input("Buy (y is yes) :")
-    Sell = input ("Sell (y if yes) :")
+    Buy = input("Buy (y is yes): ")
+    Sell = input("Sell (y if yes): ")
 
-    with open('users.csv', 'w', newline='') as csvfile:
+    with open('users.csv', 'a', newline='') as csvfile:  
         employee_writer = csv.writer(csvfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
 
         if Access:
-            sAccess = 1
+            sAccess = 1 
         else:
             sAccess = 0
 
         employee_writer.writerow([Name, Surname, sAccess, Buy, Sell])
 
 
+
 def getUserName():
-    UserName=input ("Name :")
-    AccessType="None"
-    Access=0
-    with open('users.csv') as csv_file:
+    UserName = input("Name: ")
+    AccessType = "None"
+    Access = 0
+
+    with open('users.csv', 'r', newline='') as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
-        line_count = 0
         for row in csv_reader:
-            print(str(row[0]))
             if row[0] == UserName:
                 Access = str(row[2])
-                buy=str(row[3])
-                Sell = str(row[4])
-        if Access==str(1):
-            if buy=="y" and Sell=="y":
-                AccessType="Full"
-            if buy=="y" and Sell!="y":
-                AccessType="Buy"
-            if buy!="y" and Sell=="y":
-                AccessType="Sell"
+                buy = str(row[3])
+                sell = str(row[4])
+                break  # Exit the loop once the user is found
+
+    if Access == '1':
+        if buy == 'y' and sell == 'y':
+            AccessType = "Full"
+        elif buy == 'y' and sell != 'y':
+            AccessType = "Buy"
+        elif buy != 'y' and sell == 'y':
+            AccessType = "Sell"
+            
     print(f"The user has {AccessType} access")
     return (UserName, AccessType)
