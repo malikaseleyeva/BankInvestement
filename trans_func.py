@@ -15,6 +15,13 @@ class AlphavantageAPI:
         latest_price = float(self.data.loc[latest_date]['4. close'])
         return latest_price
 
+class Stocks: 
+    def __init__(self, keyword):
+        self.url = f'https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords={keyword}&apikey=JYNTV7BCI77GNKRJ'
+        r = requests.get(self.url, verify= False)
+        self.data = r.json()
+    
+
 class Transactions:
     """Functions for all the transactions possible when investing and building your portfolio"""
     def __init__(self):
