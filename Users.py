@@ -1,7 +1,7 @@
 import csv
 
 class User:
-    """Adds a new user to csv and get the username and the accesstype"""
+    """Class with functions to add a new user to csv and get the username and the accesstype"""
     def __init__(self, Name, Surname, Access, Buy, Sell):
         self.Name=Name
         self.Surname=Surname
