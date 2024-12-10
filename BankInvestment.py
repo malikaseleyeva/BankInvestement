@@ -17,9 +17,13 @@ if __name__ == "__main__":
         while True:
             action = input("Do you want to buy or sell stocks? (buy/sell/exit): ")
             if action == 'buy':
-                transactions.buy(Access[0])
+                stock = input("Enter the stock you want to buy: ")
+                amount = int(input("Enter the number of shares you want to buy: "))
+                transactions.buy(Access[0],stock,amount)
             elif action == 'sell':
-                transactions.sell(Access[0])
+                stock = input("Enter the stock you want to sell: ")
+                amount = int(input(f"Enter the number of shares of {stock} you want to sell: "))
+                transactions.sell(Access[0],stock,amount)
             elif action == 'exit':
                 break
             else:
@@ -30,7 +34,9 @@ if __name__ == "__main__":
         while True:
             action = input("Do you want to buy? (buy/exit): ")
             if action == 'buy':
-                transactions.buy(Access[0])
+                stock = input("Enter the stock you want to buy: ")
+                amount = int(input("Enter the number of shares you want to buy: "))
+                transactions.buy(Access[0],stock,amount)
             elif action == 'sell':
                 print("You don't have the right access to sell stocks.")
             elif action == 'exit':
@@ -45,7 +51,9 @@ if __name__ == "__main__":
             if action == 'buy':
                 print("You don't have the right access to buy stocks.")
             elif action == 'sell':
-                transactions.buy(Access[0])
+                stock = input("Enter the stock you want to sell: ")
+                amount = int(input(f"Enter the number of shares of {stock} you want to sell: "))
+                transactions.buy(Access[0],stock,amount)
             elif action == 'exit':
                 break
             else:
