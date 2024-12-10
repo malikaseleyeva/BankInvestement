@@ -27,7 +27,7 @@ class Transactions:
         print(self.user_portfolios[user])
     
     def buy(self,user,stock, amount):
-        """Buying stocks and addding it to the portfolio"""
+        """Buying stock and addding it to the portfolio"""
         self.portfolio_df = self.get_user_portfolio(user)
 
         api = AlphavantageAPI(stock)
