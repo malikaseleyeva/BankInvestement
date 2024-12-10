@@ -16,18 +16,17 @@ class AlphavantageAPI:
         return latest_price
 
 class Transactions:
+    """Functions for all the transactions possible when investing and building your portfolio"""
     def __init__(self):
         self.user_portfolios = {}
 
     def get_user_portfolio(self, user):
         if user not in self.user_portfolios:
             self.user_portfolios[user] = pd.DataFrame(columns=['Stock', 'Shares', 'Price per Share', 'Total Cost', 'Transaction Date'])
-        else:
-            self.user_portfolios[user]
-        print(self.user_portfolios[user])
+        return self.user_portfolios[user]
     
-    def buy(self,user,stock, amount):
-        """Buying stock and addding it to the portfolio"""
+    def buy(self, user, stock, amount):
+        """Buying stock and adding it to the portfolio"""
         self.portfolio_df = self.get_user_portfolio(user)
 
         api = AlphavantageAPI(stock)
@@ -53,8 +52,8 @@ class Transactions:
         print(self.portfolio_df)
         return self.portfolio_df
 
-    def sell(self,user,stock,amount):
-        """Selling of stocks and adding it to the portfolio"""
+    def sell(self, user, stock, amount):
+        """Selling of stocks and updating the portfolio"""
         self.portfolio_df = self.get_user_portfolio(user)
 
         # Check if the stock is in the portfolio and if the amount is sufficient
@@ -91,7 +90,6 @@ class Transactions:
         else:
             print(f"You do not own any shares of {stock}.")
         return self.portfolio_df
-
 
 if __name__ == "__main__":
     transactions = Transactions()
