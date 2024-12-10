@@ -1,13 +1,14 @@
 import csv
 
 class User:
+    """Adds a new user to csv and get the username and the accesstype"""
     def __init__(self, Name, Surname, Access, Buy, Sell):
         self.Name=Name
         self.Surname=Surname
         self.Access = Access #True=Access ok False= No Access
         self.Buy = Buy
         self.Sell = Sell
-        
+
 
     def newUser(self):
 
