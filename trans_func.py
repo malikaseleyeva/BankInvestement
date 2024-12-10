@@ -26,10 +26,10 @@ class Transactions:
             self.user_portfolios[user]
         print(self.user_portfolios[user])
     
-    def buy(self,user):
+    def buy(self,user,stock, amount):
         self.portfolio_df = self.get_user_portfolio(user)
-        stock = input("Enter the stock you want to buy: ")
-        amount = int(input("Enter the number of shares you want to buy: "))
+        # stock = input("Enter the stock you want to buy: ")
+        # amount = int(input("Enter the number of shares you want to buy: "))
         
         api = AlphavantageAPI(stock)
         latest_price = api.get_latest_price()
@@ -54,10 +54,10 @@ class Transactions:
         print("Updated Portfolio after buying:")
         print(self.portfolio_df)
 
-    def sell(self,user):
+    def sell(self,user,stock,amount):
         self.portfolio_df = self.get_user_portfolio(user)
-        stock = input("Enter the stock you want to sell: ")
-        amount = int(input(f"Enter the number of shares of {stock} you want to sell: "))
+        # stock = input("Enter the stock you want to sell: ")
+        # amount = int(input(f"Enter the number of shares of {stock} you want to sell: "))
 
         # Check if the stock is in the portfolio and if the amount is sufficient
         if stock in self.portfolio_df['Stock'].values:
@@ -99,9 +99,13 @@ if __name__ == "__main__":
     while True:
         action = input("Do you want to buy or sell stocks? (buy/sell/exit): ")
         if action == 'buy':
-            transactions.buy('malika')
+            stock = input("Enter the stock you want to buy: ")
+            amount = int(input("Enter the number of shares you want to buy: "))
+            transactions.buy('malika',stock,amount)
         elif action == 'sell':
-            transactions.sell('malika')
+            stock = input("Enter the stock you want to sell: ")
+            amount = int(input(f"Enter the number of shares of {stock} you want to sell: "))
+            transactions.sell('malika',stock,amount)
         elif action == 'exit':
             break
         else:
